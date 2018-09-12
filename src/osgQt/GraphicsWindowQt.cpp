@@ -945,7 +945,7 @@ private:
     QtWindowingSystem& operator=( const QtWindowingSystem& );
 };
 
-#if OSG_VERSION_GREATER_OR_EQUAL(3, 5, 6)
+#if OSG_VERSION_GREATER_OR_EQUAL(3, 5, 3)
 REGISTER_WINDOWINGSYSTEMINTERFACE(Qt, QtWindowingSystem)
 #else
 
