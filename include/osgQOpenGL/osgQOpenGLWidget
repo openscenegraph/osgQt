@@ -12,7 +12,7 @@
 #include <OpenThreads/ReadWriteMutex>
 
 #ifdef WIN32
-#define __gl_h_
+//#define __gl_h_
 #include <osg/GL>
 #endif
 
