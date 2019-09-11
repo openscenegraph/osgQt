@@ -205,9 +205,12 @@ void osgQOpenGLWidget::createRenderer()
 {
     // call this before creating a View...
     setDefaultDisplaySettings();
-
-    m_renderer = new OSGRenderer(_arguments, this);
-    QScreen* screen = windowHandle()
+	if (!_arguments) {
+		m_renderer = new OSGRenderer(this);
+	} else {
+		m_renderer = new OSGRenderer(_arguments, this);
+	}
+	QScreen* screen = windowHandle()
                       && windowHandle()->screen() ? windowHandle()->screen() :
                       qApp->screens().front();
     m_renderer->setupOSG(width(), height(), screen->devicePixelRatio());
