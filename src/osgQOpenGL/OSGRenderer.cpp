@@ -206,15 +206,6 @@ void OSGRenderer::setupOSG(int windowWidth, int windowHeight, float windowScale)
     osgViewer::Viewer::Windows windows;
     getWindows(windows);
 
-    for(osgViewer::Viewer::Windows::iterator itr = windows.begin();
-        itr != windows.end(); ++itr)
-    {
-        (*itr)->getState()->setUseModelViewAndProjectionUniforms(true);
-        (*itr)->getState()->setUseVertexAttributeAliasing(true);
-        (*itr)->getState()->setShaderCompositionEnabled(
-            false); // TODO: check if we need it ???
-    }
-
     _timerId = startTimer(10, Qt::PreciseTimer);
     _lastFrameStartTime.setStartTick(0);
 }
