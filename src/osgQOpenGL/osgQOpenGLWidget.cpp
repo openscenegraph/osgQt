@@ -60,7 +60,11 @@ void osgQOpenGLWidget::resizeGL(int w, int h)
 void osgQOpenGLWidget::paintGL()
 {
     OpenThreads::ScopedReadLock locker(_osgMutex);
-    m_renderer->frame();
+	if (_isFirstFrame) {
+		_isFirstFrame = false;
+		m_renderer->getCamera()->getGraphicsContext()->setDefaultFboId(defaultFramebufferObject());
+	}
+	m_renderer->frame();
 }
 
 void osgQOpenGLWidget::keyPressEvent(QKeyEvent* event)

@@ -39,6 +39,7 @@ protected:
     bool _osgWantsToRenderFrame{true};
     OpenThreads::ReadWriteMutex _osgMutex;
     osg::ArgumentParser* _arguments {nullptr};
+	bool _isFirstFrame {true};
 
     friend class OSGRenderer;
 

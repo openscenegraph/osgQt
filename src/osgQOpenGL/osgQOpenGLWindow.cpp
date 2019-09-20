@@ -52,6 +52,10 @@ void osgQOpenGLWindow::resizeGL(int w, int h)
 void osgQOpenGLWindow::paintGL()
 {
     OpenThreads::ScopedReadLock locker(_osgMutex);
+	if (_isFirstFrame) {
+		_isFirstFrame = false;
+		m_renderer->getCamera()->getGraphicsContext()->setDefaultFboId(defaultFramebufferObject());
+	}
     m_renderer->frame();
 }
 

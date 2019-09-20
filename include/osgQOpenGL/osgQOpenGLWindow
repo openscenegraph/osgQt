@@ -37,7 +37,7 @@ protected:
     OSGRenderer* m_renderer {nullptr};
     bool _osgWantsToRenderFrame{true};
     OpenThreads::ReadWriteMutex _osgMutex;
-
+	bool _isFirstFrame {true};
     friend class OSGRenderer;
 
     QWidget* _widget = nullptr;
