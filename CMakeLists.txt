@@ -2,7 +2,7 @@ set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS TRUE)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 
-CMAKE_MINIMUM_REQUIRED(VERSION 3.0.0 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.15 FATAL_ERROR)
 
 IF(APPLE)
   # Get OSX version in MAJOR.MINOR format
@@ -92,6 +92,7 @@ ENDIF()
 
 PROJECT(osgQt)
 
+INCLUDE(GNUInstallDirs)
 FIND_PACKAGE(OpenSceneGraph 3.6.0 REQUIRED osgDB osgGA osgUtil osgText osgViewer osgWidget)
 SET(OPENSCENEGRAPH_SOVERSION 145)
 
@@ -926,3 +927,35 @@ ADD_CUSTOM_TARGET(uninstall
 
 #
 
+add_library(osg-qt ALIAS osgQOpenGL)
+add_library(osgqt ALIAS osgQOpenGL)
+
+install(TARGETS osgQOpenGL
+    EXPORT osgQOpenGL-targets
+)
+
+install(EXPORT osgQOpenGL-targets
+    FILE osg-qtTargets.cmake  
+    NAMESPACE osg-qt::
+    DESTINATION "share/cmake/osg-qt"
+)
+
+include(CMakePackageConfigHelpers)  # 引入模块 [3,5](@ref)
+
+configure_package_config_file(
+    "osgQOpenGLConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/osg-qtConfig.cmake"
+    INSTALL_DESTINATION "share/cmake/osg-qt"
+)
+
+write_basic_package_version_file(
+    "osg-qtConfigVersion.cmake"
+    VERSION 1.0.0
+    COMPATIBILITY SameMajorVersion
+)
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/osg-qtConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/osg-qtConfigVersion.cmake"
+    DESTINATION "share/cmake/osg-qt"
+)

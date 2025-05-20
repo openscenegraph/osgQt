@@ -50,6 +50,7 @@ IF ( Qt5Widgets_FOUND )
 
     SETUP_LIBRARY(${LIB_NAME})
 
+    target_include_directories(${LIB_NAME} PUBLIC $<INSTALL_INTERFACE:include>)
     generate_export_header(${LIB_NAME} EXPORT_FILE_NAME "Export")
 
 ENDIF()
