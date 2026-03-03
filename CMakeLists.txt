@@ -940,7 +940,7 @@ install(EXPORT osgQOpenGL-targets
     DESTINATION "share/cmake/osg-qt"
 )
 
-include(CMakePackageConfigHelpers)  # å¼•å…¥æ¨¡å— [3,5](@ref)
+include(CMakePackageConfigHelpers)  # ÒıÈëÄ£¿é [3,5](@ref)
 
 configure_package_config_file(
     "osgQOpenGLConfig.cmake.in"
